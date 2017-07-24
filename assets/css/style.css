@@ -1,0 +1,33 @@
+body{
+  background: linear-gradient(#00a3ff 40%, #25d688);
+  font-family: Comic Sans MS;
+  font-size: 30px;
+  color: white;
+  height: 100%;
+}
+
+.border{
+  border: 1px solid white;
+}
+
+.paddedImg{
+  padding: 15px;
+}
+
+.custom-jumbo{
+  background-color: transparent;
+}
+
+#playArea{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#playArea p{
+  color: white;
+}
+
+.thing{
+  font-size: 5rem;
+}
