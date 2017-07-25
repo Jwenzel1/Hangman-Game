@@ -24,10 +24,7 @@ body{
   align-items: center;
 }
 
-#playArea p{
-  color: white;
-}
-
-.thing{
-  font-size: 5rem;
+#guessesArea{
+  display: flex;
+  justify-content: space-around;
 }
