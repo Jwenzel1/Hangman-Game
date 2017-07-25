@@ -1,10 +1,11 @@
 var dogs = ["Affenpinscher", "Akita", "Azawakh", "Barbet", "Basenji", "Beagle", "Bloodhound", "Bolognese", "Borzoi", "Boxer", "Briard", "Brittany", "Bulldog", "Bullmastiff", "Chihuahua", "Chinook", "Cockapoo", "Collie", "Dachshund", "Dalmatian", "Goldador", "Goldendoodle", "Greyhound", "Harrier", "Havanese", "Keeshond", "Komondor", "Kooikerhondje", "Kuvasz", "Labradoodle", "Leonberger", "Lowchen", "Maltese", "Maltipoo", "Mastiff", "Mutt", "Newfoundland", "Otterhound", "Papillon", "Peekapoo", "Pekingese", "Plott", "Pointer", "Pomeranian", "Poodle", "Pug", "Puggle", "Puli", "Rottweiler", "Saluki", "Samoyed", "Schipperke", "Schnoodle", "Sloughi", "Stabyhoun", "Vizsla", "Weimaraner", "Whippet", "Xoloitzcuintli", "Yorkipoo"];
+//var dogs = ["Xoloitzcuintli"];
 var unwantedPresses = ["control", "alt", "backspace", "shift", "capslock", "tab", "arrowup", "arrowdown", "arrowright", "arrowleft", "enter", "delete", "escape", "numlock"];
 var word;
 var correctlyGuessedLetters;
 var guessedLetters = [];
 var gameStarted = false;
-var guessesRemaining ;
+var guessesRemaining = 0;
 var winsCounter = 0;
 
 //Event Listener that handles the key presses
@@ -22,6 +23,7 @@ document.onkeyup = function(event){
               correctlyGuessedLetters++;
             }
           }
+          console.log(correctlyGuessedLetters);
           if(correctlyGuessedLetters === word.length && correctlyGuessedLetters > 0){
             gameStarted = false;
             winsCounter++;
