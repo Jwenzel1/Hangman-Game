@@ -1,4 +1,5 @@
 var dogs = ["Affenpinscher", "Akita", "Azawakh", "Barbet", "Basenji", "Beagle", "Bloodhound", "Bolognese", "Borzoi", "Boxer", "Briard", "Brittany", "Bulldog", "Bullmastiff", "Chihuahua", "Chinook", "Cockapoo", "Collie", "Dachshund", "Dalmatian", "Goldador", "Goldendoodle", "Greyhound", "Harrier", "Havanese", "Keeshond", "Komondor", "Kooikerhondje", "Kuvasz", "Labradoodle", "Leonberger", "Lowchen", "Maltese", "Maltipoo", "Mastiff", "Mutt", "Newfoundland", "Otterhound", "Papillon", "Peekapoo", "Pekingese", "Plott", "Pointer", "Pomeranian", "Poodle", "Pug", "Puggle", "Puli", "Rottweiler", "Saluki", "Samoyed", "Schipperke", "Schnoodle", "Sloughi", "Stabyhoun", "Vizsla", "Weimaraner", "Whippet", "Xoloitzcuintli", "Yorkipoo"];
+var unwantedPresses = ["control", "alt", "backspace", "shift", "capslock", "tab", "arrowup", "arrowdown", "arrowright", "arrowleft", "enter", "delete", "escape", "numlock"];
 var word;
 var correctlyGuessedLetters;
 var guessedLetters = [];
@@ -10,9 +11,8 @@ var winsCounter = 0;
 document.onkeyup = function(event){
   if(gameStarted){
     var buttonPressed = event.key.toLowerCase();
-    if((buttonPressed.charCodeAt() >= 'A'.charCodeAt() && buttonPressed.charCodeAt() <= 'Z'.charCodeAt()) ||
-      (buttonPressed.charCodeAt() >= 'a'.charCodeAt() && buttonPressed.charCodeAt() <= 'z'.charCodeAt())){
-      if(buttonPressed !== "control" && buttonPressed !== "alt" && buttonPressed !== "backspace"){
+    if((buttonPressed.charCodeAt() >= 'a'.charCodeAt() && buttonPressed.charCodeAt() <= 'z'.charCodeAt())){
+      if(unwantedPresses.indexOf(buttonPressed) === -1){
         if(word.indexOf(buttonPressed) > -1){
           var playArea = document.getElementById("playArea");
           for(var i = 0; i < word.length; i++){
