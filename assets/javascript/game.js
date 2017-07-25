@@ -24,7 +24,7 @@ document.onkeyup = function(event){
             }
           }
           console.log(correctlyGuessedLetters);
-          if(correctlyGuessedLetters === word.length && correctlyGuessedLetters > 0){
+          if(correctlyGuessedLetters >= word.length && correctlyGuessedLetters > 0){
             gameStarted = false;
             winsCounter++;
             replaceInfo("You Win. Press any key to play again");
