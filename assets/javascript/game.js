@@ -12,7 +12,7 @@ document.onkeyup = function(event){
     var buttonPressed = event.key.toLowerCase();
     if((buttonPressed.charCodeAt() >= 'A'.charCodeAt() && buttonPressed.charCodeAt() <= 'Z'.charCodeAt()) ||
       (buttonPressed.charCodeAt() >= 'a'.charCodeAt() && buttonPressed.charCodeAt() <= 'z'.charCodeAt())){
-      if(buttonPressed !== "Control" && buttonPressed !== "Alt"){
+      if(buttonPressed !== "control" && buttonPressed !== "alt" && buttonPressed !== "backspace"){
         if(word.indexOf(buttonPressed) > -1){
           var playArea = document.getElementById("playArea");
           for(var i = 0; i < word.length; i++){
