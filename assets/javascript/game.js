@@ -1,8 +1,10 @@
+//var dogs = ["Affenpinscher", "Akita", "Azawakh", "Barbet", "Basenji", "Beagle", "Bloodhound", "Bolognese", "Borzoi", "Boxer", "Briard", "Brittany", "Bulldog", "Bullmastiff", "Chihuahua", "Chinook", "Cockapoo", "Collie", "Dachshund", "Dalmatian", "Goldador", "Goldendoodle", "Greyhound", "Harrier", "Havanese", "Keeshond", "Komondor", "Kooikerhondje", "Kuvasz", "Labradoodle", "Leonberger", "Lowchen", "Maltese", "Maltipoo", "Mastiff", "Mutt", "Newfoundland", "Otterhound", "Papillon", "Peekapoo", "Pekingese", "Plott", "Pointer", "Pomeranian", "Poodle", "Pug", "Puggle", "Puli", "Rottweiler", "Saluki", "Samoyed", "Schipperke", "Schnoodle", "Sloughi", "Stabyhoun", "Vizsla", "Weimaraner", "Whippet", "Xoloitzcuintli", "Yorkipoo"];
 var dogs = ["Akita"];
 var word;
+var correctlyGuessedLetters;
 var guessedLetters = [];
 var gameStarted = false;
-var guessesRemaining = 10;
+var guessesRemaining ;
 var winsCounter = 0;
 
 //Event Listener that handles the key presses
@@ -10,42 +12,67 @@ document.onkeyup = function(event){
   if(gameStarted){
     var buttonPressed = event.key.toLowerCase();
     if((buttonPressed.charCodeAt() >= 'A'.charCodeAt() && buttonPressed.charCodeAt() <= 'Z'.charCodeAt()) ||
-        (buttonPressed.charCodeAt() >= 'a'.charCodeAt() && buttonPressed.charCodeAt() <= 'z'.charCodeAt())){
-        //console.log(buttonPressed);
-        if(buttonPressed !== "Control" && buttonPressed !== "Alt"){
-          if(word.indexOf(buttonPressed) > -1){
-            var playArea = document.getElementById("playArea");
-            for(var i = 0; i < word.length; i++){
-              if(word[i].toLowerCase() === buttonPressed){
-                //var replacement = document.createElement("p").appendChild(document.createTextNode(buttonPressed));
-                var replacement = document.createTextNode(buttonPressed + "  ");
-                playArea.replaceChild(replacement, playArea.childNodes[i+1]);
+      (buttonPressed.charCodeAt() >= 'a'.charCodeAt() && buttonPressed.charCodeAt() <= 'z'.charCodeAt())){
+      if(buttonPressed !== "Control" && buttonPressed !== "Alt"){
+        if(word.indexOf(buttonPressed) > -1){
+          var playArea = document.getElementById("playArea");
+          for(var i = 0; i < word.length; i++){
+            if(word[i].toLowerCase() === buttonPressed){
+              var replacement = document.createTextNode(" " + buttonPressed + " ");
+              playArea.replaceChild(replacement, playArea.childNodes[i]);
+              correctlyGuessedLetters++;
+              if(correctlyGuessedLetters === word.length && correctlyGuessedLetters >= 1){
+                gameStarted = false;
+                winsCounter++;
+                replaceInfo("You Win. Press any key to play again");
               }
             }
-
           }
-          /*if (guessedLetters.indexOf(buttonPressed) === -1) {
-            guessedLetters.push(buttonPressed);
-            guessesRemaining--;
-            updateGuesses();
-          }*/
-
         }
+        else if(guessedLetters.indexOf(buttonPressed) === -1){
+          var guessesArea = document.getElementById("guessesArea");
+          guessesArea.appendChild(document.createTextNode(" " + buttonPressed + " "));
+          guessedLetters.push(buttonPressed);
+          guessesRemaining--;
+          updateGuesses();
+          if(guessesRemaining == 0){
+            gameStarted = false;
+            replaceInfo("You Lose. Press any key to play again");
+          }
+        }
+      }
     }
   }
   else{
+    clearAllChildren("playArea");
+    clearAllChildren("guessesArea");
     var dog = dogs[Math.floor(Math.random() * dogs.length)];
     var playArea = document.getElementById("playArea");
     for (var i = 0; i < dog.length; i++) {
-      var space = document.createElement("P").appendChild(document.createTextNode("_  "));
+      var space = document.createElement("P").appendChild(document.createTextNode(" _ "));
       playArea.appendChild(space);
     }
     word = dog.toLowerCase();
+    guessedLetters.length = 0;
+    guessesRemaining = 10;
+    correctlyGuessedLetters = 0;
     updateGuesses();
     updateWins();
+    replaceInfo("");
     gameStarted = true;
   }
+}
 
+function clearAllChildren(id){
+  var parent = document.getElementById(id);
+  while(parent.childNodes.length != 0){
+    parent.removeChild(parent.childNodes[0]);
+  }
+}
+
+function replaceInfo(message){
+  var info = document.getElementById("information");
+  info.replaceChild(document.createTextNode(message), info.childNodes[0]);
 }
 
 function updateGuesses(){

@@ -1,3 +1,7 @@
+html{
+  height: 100%;
+}
+
 body{
   background: linear-gradient(#00a3ff 40%, #25d688);
   font-family: Comic Sans MS;
