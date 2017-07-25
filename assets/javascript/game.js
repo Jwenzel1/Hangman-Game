@@ -20,12 +20,12 @@ document.onkeyup = function(event){
               var replacement = document.createTextNode(" " + buttonPressed + " ");
               playArea.replaceChild(replacement, playArea.childNodes[i]);
               correctlyGuessedLetters++;
-              if(correctlyGuessedLetters === word.length && correctlyGuessedLetters >= 1){
-                gameStarted = false;
-                winsCounter++;
-                replaceInfo("You Win. Press any key to play again");
-              }
             }
+          }
+          if(correctlyGuessedLetters === word.length && correctlyGuessedLetters > 0){
+            gameStarted = false;
+            winsCounter++;
+            replaceInfo("You Win. Press any key to play again");
           }
         }
         else if(guessedLetters.indexOf(buttonPressed) === -1){
@@ -34,7 +34,7 @@ document.onkeyup = function(event){
           guessedLetters.push(buttonPressed);
           guessesRemaining--;
           updateGuesses();
-          if(guessesRemaining == 0){
+          if(guessesRemaining === 0){
             gameStarted = false;
             replaceInfo("You Lose. Press any key to play again");
           }
