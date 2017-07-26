@@ -96,16 +96,16 @@ document.onkeyup = function(event){
           currentGame.updateGuesses();
           addToGuessArea(keystroke);
         }
+        if(currentGame.numGuesses === 0){
+          update("information", "You Lose. Press any key to play again.");
+          gameStarted = false;
+        }
+        else if (checkForWin()){
+          update("information", "You Win. Press any key to play again.");
+          winsCounter++;
+          gameStarted = false;
+        }
       }
-    }
-    if(currentGame.numGuesses === 0){
-      update("information", "You Lose. Press any key to play again.");
-      gameStarted = false;
-    }
-    else if (checkForWin()){
-      update("information", "You Win. Press any key to play again.");
-      winsCounter++;
-      gameStarted = false;
     }
   }
   else{
