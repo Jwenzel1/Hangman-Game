@@ -22,13 +22,11 @@ body{
   background-color: transparent;
 }
 
-#playArea{
+#playArea, #guessesArea{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
 }
 
-#guessesArea{
-  display: flex;
-  justify-content: space-around;
+#playArea span, #guessesArea span{
+  padding: 0px 10px;
 }
