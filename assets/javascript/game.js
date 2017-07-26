@@ -1,6 +1,6 @@
 var dogs = ["Affenpinscher", "Akita", "Azawakh", "Barbet", "Basenji", "Beagle", "Bloodhound", "Bolognese", "Borzoi", "Boxer", "Briard", "Brittany", "Bulldog", "Bullmastiff", "Chihuahua", "Chinook", "Cockapoo", "Collie", "Dachshund", "Dalmatian", "Goldador", "Goldendoodle", "Greyhound", "Harrier", "Havanese", "Keeshond", "Komondor", "Kooikerhondje", "Kuvasz", "Labradoodle", "Leonberger", "Lowchen", "Maltese", "Maltipoo", "Mastiff", "Mutt", "Newfoundland", "Otterhound", "Papillon", "Peekapoo", "Pekingese", "Plott", "Pointer", "Pomeranian", "Poodle", "Pug", "Puggle", "Puli", "Rottweiler", "Saluki", "Samoyed", "Schipperke", "Schnoodle", "Sloughi", "Stabyhoun", "Vizsla", "Weimaraner", "Whippet", "Xoloitzcuintli", "Yorkipoo"];
 
-var unwantedPresses = ["control", "alt", "backspace", "shift", "capslock", "tab", "arrowup", "arrowdown", "arrowright", "arrowleft", "enter", "delete", "escape", "numlock"];
+var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
 var gameStarted = false;
 var winsCounter = 0;
@@ -10,9 +10,7 @@ var currentGame;
 document.onkeyup = function(event){
   var keystroke = event.key.toLowerCase();
   if(gameStarted){
-    if(unwantedPresses.indexOf(keystroke) === -1 &&
-      keystroke.charCodeAt() >= 97 &&
-      keystroke.charCodeAt() <= 122){
+    if(alphabet.indexOf(keystroke) > -1){
       if(!(currentGame.alreadyGuessed(keystroke))){
         var correct = currentGame.addGuessedLetter(keystroke);
         if(correct){
@@ -54,7 +52,7 @@ function checkForWin(){
     }
   }
   return true;
-}
+};
 
 function addToGuessArea(letter){
   var area = document.getElementById("guessesArea");
