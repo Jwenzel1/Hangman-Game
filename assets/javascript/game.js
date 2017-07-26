@@ -39,7 +39,7 @@ document.onkeyup = function(event){
     purgeChildren("guessesArea");
     currentGame = new Game(dogs[Math.floor(Math.random() * dogs.length)].toLowerCase());
     currentGame.updateGuesses();
-    setUpPlayarea(currentGame);
+    setUpPlayArea(currentGame);
     gameStarted = true;
   }
 };
@@ -70,7 +70,7 @@ function updatePlayArea(word, key){
   }
 };
 
-function setUpPlayarea(gameObj){
+function setUpPlayArea(gameObj){
   var playArea = getPlayArea();
   for(var i = 0; i < gameObj.word.length; i++){
     var space = document.createElement("span");
