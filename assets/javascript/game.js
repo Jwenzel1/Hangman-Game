@@ -103,6 +103,7 @@ document.onkeyup = function(event){
         else if (checkForWin()){
           update("information", "You Win. Press any key to play again.");
           winsCounter++;
+          update("wins", winsCounter);
           gameStarted = false;
         }
       }
@@ -110,7 +111,6 @@ document.onkeyup = function(event){
   }
   else{
     update("information", "");
-    update("wins", winsCounter);
     purgeChildren("playArea");
     purgeChildren("guessesArea");
     currentGame = new Game(dogs[Math.floor(Math.random() * dogs.length)].toLowerCase());
